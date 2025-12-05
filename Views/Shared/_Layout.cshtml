@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Личен сайт на Пламен Костадинов</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Fira+Code:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="page-body theme-dark">
+    <div class="global-glow"></div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark glass-nav">
+            <div class="container">
+                <a class="navbar-brand code-brand" asp-controller="Home" asp-action="Index">&lt;PlamenCV /&gt;</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-anim" asp-controller="Home" asp-action="Index">Начало</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-anim" asp-controller="Gallery" asp-action="Index">Галерия</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-anim" asp-controller="Comments" asp-action="Index">Коментари</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-anim" asp-controller="Contact" asp-action="Index">Контакти</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item me-2">
+                            <button id="themeToggle" class="btn btn-sm btn-neo toggle-btn" type="button" aria-label="Смяна на тема">
+                                <span class="theme-icon-dark">☾</span>
+                                <span class="theme-icon-light d-none">☼</span>
+                            </button>
+                        </li>
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li class="nav-item">
+                                <span class="navbar-text me-2 small">Здравей, <span class="highlight">@User.Identity!.Name</span></span>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Account" asp-action="Logout" class="btn btn-outline-light btn-logout">Изход</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-anim" asp-controller="Account" asp-action="Login">Вход</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-anim" asp-controller="Account" asp-action="Register">Регистрация</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pb-5 page-main fade-in-page">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top footer text-muted glass-footer">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span>© 2025 - Личен сайт на Пламен Костадинов</span>
+            <span class="code-footer">Made with  C#</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

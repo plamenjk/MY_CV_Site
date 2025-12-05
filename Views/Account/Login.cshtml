@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Вход";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="glass-card p-4">
+                <h2 class="mb-3">Вход в личния сайт</h2>
+                <p class="text-muted">
+                    Това приложение представлява личен сайт на Пламен Костадинов, изграден като онлайн CV,
+                    галерия със снимки, страница за коментари и контактна форма. След като влезете в системата,
+                    ще имате достъп до всички секции – „Начало“, „Галерия“, „Коментари“ и „Контакти“.
+                </p>
+                <hr />
+                <form method="post" class="mt-3">
+                    <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                    <div class="mb-3">
+                        <label class="form-label">Потребителско име</label>
+                        <input type="text" name="userName" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Парола</label>
+                        <input type="password" name="password" class="form-control" required />
+                    </div>
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger">@ViewBag.Error</div>
+                    }
+                    <button type="submit" class="btn btn-primary btn-neo w-100 mb-2">Вход</button>
+                    <div class="text-center mt-2">
+                        <span class="text-muted">Нямате акаунт? </span>
+                        <a asp-controller="Account" asp-action="Register">Регистрирайте се тук</a>.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
